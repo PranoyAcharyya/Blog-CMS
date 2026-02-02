@@ -41,7 +41,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="w-full border-b bg-background/50 sticky top-0 backdrop-blur">
+    <nav className="w-full border-b bg-background/50 sticky top-0 backdrop-blur" >
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
 
         {/* Logo */}
@@ -104,15 +104,15 @@ export default function Navbar() {
               </div>
 
               <div className="flex flex-col gap-2 mt-6">
-                {user && <Button className="w-full" variant="outline">
+                {user && <Button className="w-full" variant="outline" onClick = {handleLogout}>
                   Logout
                 </Button>}
 
-                {!user && <Button className="w-full" variant="outline">
+                {!user && <Button className="w-full" variant="outline" onClick={()=>{router.push('/login')}}>
                   Login
                 </Button>}
 
-                {!user && <Button className="w-full" variant="outline">
+                {!user && <Button className="w-full" variant="outline" onClick={()=>{router.push('/signup')}}>
                   Signup
                 </Button>}
               </div>

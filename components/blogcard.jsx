@@ -26,7 +26,7 @@ const Blogcard = ({blog}) => {
       <img
         src={blog.featured_image}
         alt="Event cover"
-        className="relative z-20 aspect-video w-full object-cover"
+        className="relative aspect-video w-full object-cover"
       />
       <CardHeader>
         <CardAction>
