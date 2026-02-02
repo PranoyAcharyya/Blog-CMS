@@ -35,7 +35,11 @@ const schema = yup.object({
   image: yup.mixed().required("Feature image required"),
 });
 
+const apiKey=process.env.NEXT_PUBLIC_TINYMCE_API_KEY
+
+
 export default function CreateBlogPage() {
+  
   const dispatch = useDispatch();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -145,7 +149,7 @@ export default function CreateBlogPage() {
                 <FormLabel>Content</FormLabel>
                 <FormControl>
                   <Editor
-                    apiKey="yquy8kocbgy62qi7pnrk9c7htdgtyjmprly811s2dlxq9peb"
+                    apiKey={apiKey}
                     value={field.value}
                     init={{
                       height: 300,

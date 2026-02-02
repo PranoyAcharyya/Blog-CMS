@@ -31,6 +31,8 @@ const schema = yup.object({
   image: yup.mixed().nullable(),
 });
 
+const apiKey=process.env.NEXT_PUBLIC_TINYMCE_API_KEY
+
 const EditBlogPage = () => {
   const { id } = useParams();
   const router = useRouter();
@@ -168,7 +170,7 @@ const EditBlogPage = () => {
                 <FormLabel>Content</FormLabel>
                 <FormControl>
                   <Editor
-                    apiKey="yquy8kocbgy62qi7pnrk9c7htdgtyjmprly811s2dlxq9peb"
+                    apiKey={apiKey}
                     value={field.value}
                     init={{
                       height: 300,
