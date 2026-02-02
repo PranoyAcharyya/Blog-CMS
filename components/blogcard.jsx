@@ -21,7 +21,7 @@ const Blogcard = ({blog}) => {
 }
 
   return (
-     <Card className="relative mx-auto w-full max-w-sm pt-0 overflow-hidden">
+     <Card className="mx-auto w-full max-w-sm pt-0 overflow-hidden">
       
       <img
         src={blog.featured_image}
