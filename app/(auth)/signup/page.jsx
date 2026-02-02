@@ -7,6 +7,8 @@ import { useRedirectIfAuth } from "@/lib/useRedirectIfAuth";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { HyperText } from "@/components/ui/hyper-text";
+import { MagicCard } from "@/components/ui/magic-card";
 
 import {
   Form,
@@ -20,6 +22,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
+import { useTheme } from "next-themes";
 
 const schema = yup.object({
   fullName: yup.string().required("Full name required"),
@@ -31,6 +34,8 @@ const schema = yup.object({
 });
 
 const SignupPage = () => {
+
+  const { theme } = useTheme();
   const checking = useRedirectIfAuth();
 
     const [loading, setLoading] = useState(false);
@@ -109,9 +114,13 @@ if (checking) return (
 );
   return (
     <div className="min-h-screen flex flex-col justify-center items-center">
+
+       <MagicCard gradientColor={theme === "dark" ? "#262626" : "#D9D9D955"}
+        className="p-4 rounded-xl flex flex-col items-center">
+
       <Form {...form}>
         <form className="w-96 space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
-          <h1 className="text-2xl font-bold text-center">Create Account</h1>
+          <HyperText className='text-center'>Sign Up</HyperText>
           <FormField
             control={form.control}
             name="fullName"
@@ -201,7 +210,8 @@ if (checking) return (
           </Button>
         </form>
       </Form>
-      <Button className="mt-4" onClick={handleNavigation}>Aleready have account ? Log In</Button>
+      <Button className="mt-4 w-full" onClick={handleNavigation}>Aleready have account ? Log In</Button>
+        </MagicCard>
     </div>
   );
 };

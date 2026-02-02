@@ -4,12 +4,13 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabaseClient";
 import { useRedirectIfAuth } from "@/lib/useRedirectIfAuth";
-
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-
 import { Spinner } from "@/components/ui/spinner";
+import { HyperText } from "@/components/ui/hyper-text";
+import { MagicCard } from "@/components/ui/magic-card";
+
 
 import {
   Form,
@@ -22,6 +23,7 @@ import {
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useTheme } from "next-themes";
 
 const schema = yup.object({
   email: yup.string().email().required("Email required"),
@@ -29,7 +31,7 @@ const schema = yup.object({
 });
 
 export default function LoginPage() {
-
+  const { theme } = useTheme()
   // ✅ ALL HOOKS FIRST
   const checking = useRedirectIfAuth();
   const [loading, setLoading] = useState(false);
@@ -73,16 +75,18 @@ export default function LoginPage() {
     }
   }
 
+
   return (
-    <div className="min-h-screen flex justify-center items-center flex-col">
-      <Form {...form}>
+    <div className="min-h-screen flex justify-center items-center flex-col p-5 w-full">
+      <MagicCard gradientColor={theme === "dark" ? "#262626" : "#D9D9D955"}
+        className="p-4 rounded-xl flex flex-col items-center">
+
+        <Form {...form} className="w-full">
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="w-96 space-y-4"
+          className="w-full md:w-96 space-y-4"
         >
-          <h1 className="text-2xl font-bold text-center">
-            Login
-          </h1>
+          <HyperText className='text-center'>Login</HyperText>
 
           <FormField
             control={form.control}
@@ -120,7 +124,10 @@ export default function LoginPage() {
           </Button>
         </form>
       </Form>
-      <Button className="mt-4" onClick={handleNavigation}>Not registered yet? Sign up</Button>
+      <Button className="mt-4 w-full" onClick={handleNavigation}>Not registered yet? Sign up</Button>
+
+      </MagicCard>
+      
     </div>
   );
 }
