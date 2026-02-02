@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Menu } from "lucide-react";
+import { BookOpen, Menu } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -19,8 +19,7 @@ import { useRouter } from 'next/navigation';
 
 const navItems = [
   { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Contact", href: "/contact" },
+  {name:"Blogs",href:"/blogs"},
   { name:"Dashboard",href:"/dashboard"}
 ];
 
@@ -46,8 +45,9 @@ export default function Navbar() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
 
         {/* Logo */}
-        <Link href="/" className="text-xl font-bold">
-          MIND
+        <Link href="/" className="text-xl font-bold flex items-center gap-1">
+        <BookOpen />
+          <p>MIND</p>
         </Link>
 
         {/* ================= DESKTOP MENU ================= */}
