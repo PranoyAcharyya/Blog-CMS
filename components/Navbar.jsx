@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import { getUser } from "@/lib/getUser";
 import { supabase } from "@/lib/supabaseClient";
 import { useRouter } from 'next/navigation';
+import { AnimatedThemeToggler } from "./ui/animated-theme-toggler";
 
 
 const navItems = [
@@ -68,7 +69,8 @@ export default function Navbar() {
                 </Button>}
             {!user && <Button variant="outline" onClick={()=>{router.push('/login')}}>Login</Button>}
             {!user && <Button variant="outline" onClick={()=>{router.push('/signup')}}>Signup</Button>}
-            <ModeToggle />
+            {/* <ModeToggle /> */}
+            <AnimatedThemeToggler />
           </div>
         </div>
 
