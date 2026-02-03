@@ -88,6 +88,7 @@ export default function CreateBlogPage() {
         content: values.content,
         featured_image: img.publicUrl,
         author_id: user.id,
+        author_name:user.user_metadata.name
       };
 
       // 4️⃣ Redux Save
