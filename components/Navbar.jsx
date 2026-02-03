@@ -78,7 +78,8 @@ export default function Navbar() {
         <div className="flex items-center gap-2 md:hidden">
 
           {/* Theme Toggle */}
-          <ModeToggle />
+          {/* <ModeToggle /> */}
+          <AnimatedThemeToggler />
 
           {/* Hamburger */}
           <Sheet>
