@@ -42,7 +42,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="w-full border-b bg-background/50 sticky top-0 backdrop-blur z-[99]" >
+    <nav className="w-full border-b bg-background/50 sticky top-0 backdrop-blur z-[9]" >
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
 
         {/* Logo */}
