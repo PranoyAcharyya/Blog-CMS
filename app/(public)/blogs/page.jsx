@@ -22,7 +22,7 @@ function BlogsPage() {
         loadAllblogs();
     },[])
 
-    if(loading) return <p className="p-6"><Spinner/></p>;
+    if(loading) return <div className="p-6 h-screen w-full flex flex-col justify-center items-center"><Spinner/></div>;
   return (
     <div className="max-w-7xl mx-auto p-6">
         <h1 className="text-3xl font-bold mb-6 text-center">All Blogs</h1>
