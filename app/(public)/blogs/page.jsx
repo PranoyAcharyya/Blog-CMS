@@ -76,7 +76,7 @@ function BlogsPage() {
         <DialogTrigger asChild>
           <Button className="fixed bottom-4 right-4 bg-green-500">
             <FileHeart />
-            Your Bookmarks
+            {bookmarks.length}
           </Button>
         </DialogTrigger>
         <DialogContent>
