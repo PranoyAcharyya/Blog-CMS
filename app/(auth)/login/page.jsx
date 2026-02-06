@@ -24,6 +24,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
+import { Bounce, toast, ToastContainer } from "react-toastify";
+import Link from "next/link";
 
 const schema = yup.object({
   email: yup.string().email().required("Email required"),
@@ -68,9 +70,10 @@ export default function LoginPage() {
 
     if (error) {
       setLoading(false);
-      alert(error.message);
+      toast.error(error.message);
     } else {
       setLoading(false);
+      toast.success('Login successfull');
       window.location.href = "/dashboard";
     }
   }
@@ -78,6 +81,19 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex justify-center items-center flex-col p-5 w-full">
+       <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
       <MagicCard gradientColor={theme === "dark" ? "#262626" : "#D9D9D955"}
         className="p-4 rounded-xl flex flex-col items-center">
 
@@ -95,7 +111,7 @@ export default function LoginPage() {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Input {...field} disabled={loading}/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -109,7 +125,7 @@ export default function LoginPage() {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input type="password" {...field} />
+                  <Input type="password" {...field} disabled={loading}/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -125,7 +141,7 @@ export default function LoginPage() {
         </form>
       </Form>
       <Button className="mt-4 w-full" onClick={handleNavigation}>Not registered yet? Sign up</Button>
-
+        <Link href='/' className="block text-center w-full mt-[20px] self-center uppercase bold">back to home</Link>
       </MagicCard>
       
     </div>
