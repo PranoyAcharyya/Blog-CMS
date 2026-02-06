@@ -1,7 +1,7 @@
-"use client"
-import React from 'react'
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+"use client";
+import React, { useState } from "react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardAction,
@@ -9,20 +9,42 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import Link from 'next/link'
+} from "@/components/ui/card";
+import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { addtoBookmark, removeBookmark } from "@/store/bookmarkSlice";
+import { Bookmark, BookmarkCheck } from "lucide-react";
+import { toast } from "react-toastify";
 
+const Blogcard = ({ blog }) => {
 
-const Blogcard = ({blog}) => {
+  const bookmarks = useSelector(state => state.bookmarks.bookmarks);
+
+  const bookmarked = bookmarks.some(
+  (item) => item.id === blog.id
+);
+
+  // const [bookmarked,setBookmarked] =useState(false);
+  const dispatch = useDispatch();
+
+const handleBookmarks = (data) => {
+  if(!bookmarked){
+    dispatch(addtoBookmark(data));
+    toast.success('Bookmark Added');
+  }else{
+    dispatch(removeBookmark(data));
+    toast.info('Bookmark removed')
+  }
+};
 
   function htmlToPlainText(html) {
-  const doc = new DOMParser().parseFromString(html, "text/html");
-  return doc.body.textContent || "";
-}
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    return doc.body.textContent || "";
+  }
 
   return (
-     <Card className="mx-auto w-full max-w-sm pt-0 overflow-hidden">
-      
+    <Card className="mx-auto w-full max-w-sm pt-0 overflow-hidden relative">
+      <div className="absolute top-2 right-2 cursor-pointer  rounded" onClick={()=>handleBookmarks(blog)}>{bookmarked ? <BookmarkCheck color="#ff2056"/>:<Bookmark color="#ff2056"/>}</div>
       <img
         src={blog.featured_image}
         alt="Event cover"
@@ -35,17 +57,15 @@ const Blogcard = ({blog}) => {
         <CardTitle>{blog.title}</CardTitle>
         <CardDescription className="line-clamp-2">
           {htmlToPlainText(blog.content)}
-          </CardDescription>
-          
+        </CardDescription>
       </CardHeader>
       <CardFooter>
-        <Link href={`/blogs/${blog.id}`} className='w-full'>
+        <Link href={`/blogs/${blog.id}`} className="w-full">
           <Button className="w-full cursor-pointer">View blog</Button>
         </Link>
-        
       </CardFooter>
     </Card>
-  )
-}
+  );
+};
 
 export default Blogcard;
