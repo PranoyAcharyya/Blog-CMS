@@ -74,7 +74,7 @@ function BlogsPage() {
 
       <Dialog>
         <DialogTrigger asChild>
-          <Button className="fixed bottom-4 right-4 bg-green-500">
+          <Button className="fixed bottom-4 right-4 bg-red-500">
             <FileHeart />
             {bookmarks.length}
           </Button>
@@ -87,7 +87,7 @@ function BlogsPage() {
           <div className="no-scrollbar -mx-4 max-h-[50vh] overflow-y-auto px-4">
             {bookmarks.length === 0 && 'no items in bookmark'}
             {bookmarks.map((b) => (
-              <div className="relative">
+              <div className="relative pr-5">
                 <Link
                   className="flex items-center gap-2 mt-4"
                   href={`/blogs/${b.id}`}
