@@ -60,8 +60,13 @@ const Blogcard = ({ blog }) => {
         <CardAction>
           <Badge variant="secondary">{blog.category}</Badge>
         </CardAction>
-        <CardTitle className='line-clamp-1'>{blog.title}</CardTitle>
-        <Button variant="outline" size="sm" className='self-start'>
+        <Link href={`/blogs/${blog.id}`} className="w-full">
+
+         <CardTitle className='line-clamp-1 hover:text-red-500'>{blog.title}</CardTitle>
+        </Link>
+
+       
+        <Button variant="outline" size="sm" className='self-start max-w-fit mt-2'>
           <User /> {blog.author_name}
         </Button>
         <CardDescription className="line-clamp-2">

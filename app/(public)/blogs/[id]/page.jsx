@@ -55,7 +55,7 @@ export default function BlogDetailsPage() {
         <img src={blog.featured_image} className="w-full rounded-lg mb-6" />
         <h3>By {blog.author_name}</h3>
         <p className="text-sm text-gray-500 mb-2">
-          <b className="text-black">Category:</b> {blog.category}
+          <b>Category:</b> {blog.category}
         </p>
 
         <h1 className="text-3xl font-bold mb-4">{blog.title}</h1>
