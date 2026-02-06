@@ -21,12 +21,12 @@ const bookmarkSlice = createSlice({
     reducers:{
         addtoBookmark:(state,action)=>{
             state.bookmarks = [...state.bookmarks,action.payload];
-            console.log(state.bookmarks);
+            // console.log(state.bookmarks);
             localStorage.setItem('bookmarks',JSON.stringify(state.bookmarks));
         },
         removeBookmark:(state,action)=>{
             state.bookmarks = state.bookmarks.filter((i)=> i.id !== action.payload.id)
-            console.log(state.bookmarks);
+            // console.log(state.bookmarks);
             localStorage.setItem('bookmarks',JSON.stringify(state.bookmarks));
         }
     }

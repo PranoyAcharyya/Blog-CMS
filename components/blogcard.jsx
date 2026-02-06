@@ -13,29 +13,26 @@ import {
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { addtoBookmark, removeBookmark } from "@/store/bookmarkSlice";
-import { Bookmark, BookmarkCheck } from "lucide-react";
+import { Bookmark, BookmarkCheck, User } from "lucide-react";
 import { toast } from "react-toastify";
 
 const Blogcard = ({ blog }) => {
+  const bookmarks = useSelector((state) => state.bookmarks.bookmarks);
 
-  const bookmarks = useSelector(state => state.bookmarks.bookmarks);
-
-  const bookmarked = bookmarks.some(
-  (item) => item.id === blog.id
-);
+  const bookmarked = bookmarks.some((item) => item.id === blog.id);
 
   // const [bookmarked,setBookmarked] =useState(false);
   const dispatch = useDispatch();
 
-const handleBookmarks = (data) => {
-  if(!bookmarked){
-    dispatch(addtoBookmark(data));
-    toast.success('Bookmark Added');
-  }else{
-    dispatch(removeBookmark(data));
-    toast.info('Bookmark removed')
-  }
-};
+  const handleBookmarks = (data) => {
+    if (!bookmarked) {
+      dispatch(addtoBookmark(data));
+      toast.success("Bookmark Added");
+    } else {
+      dispatch(removeBookmark(data));
+      toast.info("Bookmark removed");
+    }
+  };
 
   function htmlToPlainText(html) {
     const doc = new DOMParser().parseFromString(html, "text/html");
@@ -44,7 +41,16 @@ const handleBookmarks = (data) => {
 
   return (
     <Card className="mx-auto w-full max-w-sm pt-0 overflow-hidden relative">
-      <div className="absolute top-2 right-2 cursor-pointer  rounded" onClick={()=>handleBookmarks(blog)}>{bookmarked ? <BookmarkCheck color="#ff2056"/>:<Bookmark color="#ff2056"/>}</div>
+      <div
+        className="absolute top-2 right-2 cursor-pointer  rounded"
+        onClick={() => handleBookmarks(blog)}
+      >
+        {bookmarked ? (
+          <BookmarkCheck color="#ff2056" />
+        ) : (
+          <Bookmark color="#ff2056" />
+        )}
+      </div>
       <img
         src={blog.featured_image}
         alt="Event cover"
@@ -54,7 +60,10 @@ const handleBookmarks = (data) => {
         <CardAction>
           <Badge variant="secondary">{blog.category}</Badge>
         </CardAction>
-        <CardTitle>{blog.title}</CardTitle>
+        <CardTitle className='line-clamp-1'>{blog.title}</CardTitle>
+        <Button variant="outline" size="sm" className='self-start'>
+          <User /> {blog.author_name}
+        </Button>
         <CardDescription className="line-clamp-2">
           {htmlToPlainText(blog.content)}
         </CardDescription>
