@@ -161,3 +161,7 @@
     animation: none;
     mix-blend-mode: normal;
 }
+
+div[data-slot="dialog-overlay"]{
+  backdrop-filter: blur(10);
+}
